@@ -1,0 +1,489 @@
+/* ==UserStyle==
+@name           digwebinterface.com - 10/24/2021, 5:38:04 PM
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Kat21
+@preprocessor   stylus
+@license        GPLv3
+@homepageURL    https://github.com/datkat21/uwp_stylus
+@var select theme 'Pick a theme' {
+    'Dark (default)': 'dark',
+    'Light': 'light',
+}
+@var select colors 'Color presets (most are non-functional as of now)' {
+    'None': 'none',
+    'Kiwi': 'kiwi',
+    'Noptec': 'noptec',
+    'Cherry': 'cherry',
+}
+@var select   style      'Pick a style' {
+    'Windows 10 (default)': 'ten',
+    'Windows 11 (WIP)': 'eleven',
+    'Material Design (Not yet started)': 'material',
+}
+@var checkbox rounded         'W10: Round corners' 0
+@var checkbox newline         'W10: Use newline'       0
+@var color    accent          'Accent'             #3778f6
+@var text     font            'Custom font'        ''Segoe UI Variable''
+==/UserStyle== */
+@-moz-document domain("digwebinterface.com") {
+    if style==ten {
+        :root {
+            --border-radius: 5px;
+        }
+        if colors==kiwi {
+            :root {
+                --accent: #438348;
+                --background: #202020;
+                --color: white;
+            }
+        }
+        if theme==dark {
+            :root {
+                --accent: accent;
+                --bg: #000;
+                --color: white;
+            }
+        }
+        else if theme==light {
+            :root {
+                --accent: accent;
+                --bg: #fff;
+                --color: #000;
+            }
+        }
+        html,
+        body {
+            background: var(--bg) !important;
+            color: white !important;
+            font-family: "Segoe UI Variable Display", "Quicksand", "Roboto", "Segoe UI";
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            animation: top 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 8px 30px;
+            if newline {
+                margin-top: 110px;
+            }
+            else {
+                margin-top: 80px;
+            }
+        }
+        #fb-root::before {
+            if newline {
+                content: "digweb\A";
+            }
+            else {
+                content: "digweb";
+            }
+            background: linear-gradient(90deg, #fff, #fff 43%, var(--accent) 43%, var(--accent));
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            font-size: 64px;
+            white-space: pre;
+            margin-left: 10px;
+        }
+        #fb-root::after {
+            content: "now with uwp";
+            font-size: 32px;
+            font-weight: 999;
+            margin-left: 10px;
+        }
+        #fb-root {
+            if colors==kiwi {
+                background: linear-gradient(#000, #000, #000, rgba(0, 0, 0, 0));
+            }
+            else {
+                background: linear-gradient(#000, #000, #000, rgba(0, 0, 0, 0));
+            }
+            z-index: 99;
+            position: fixed;
+            top: 0;
+            padding-left: 40px;
+            width: 100%;
+            if newline {
+                height: 150px;
+            }
+            else {
+                height: 100px;
+            }
+        }
+        td > input[type=submit] + input[type=button] {
+            margin-left: 22px;
+        }
+        body > form:nth-child(3) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > select:nth-child(3) {
+            margin-top: 10px;
+        }
+        body > form:nth-child(3) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > select:nth-child(3) + p {
+            margin-top: 5px;
+        }
+        body > form:nth-child(3) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > p:nth-child(4) > b:nth-child(1) {
+            font-size: medium !important;
+            margin: 0 0 10px 0;
+        }
+        table {
+            margin-top: 10px;
+            padding: 20px;
+        }
+        @keyframes top {
+            0% {
+                transform: translate(0, -100%);
+                pointer-events: none;
+                opacity: 0;
+                overflow: hidden;
+            }
+            100% {
+                transform: translate(0, 0);
+                pointer-events: all;
+                opacity: 1;
+                overflow: visible;
+            }
+        }
+        p > b {
+            font-size: 32px;
+        }
+        textarea {
+            if rounded {
+                border-radius: var(--border-radius);
+            }
+            background: #101010 !important;
+            border: 2px solid #777777;
+            color: white !important;
+            appearance: none;
+            outline: none;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+        textarea:focus {
+            background: #ffffff !important;
+            color: var(--bg) !important;
+            border: 2px solid var(--accent);
+        }
+        input {
+            color: white;
+            outline: none;
+            background: #454545 !important;
+            border: 2px solid #454545;
+            position: relative;
+            if rounded {
+                border-radius: var(--border-radius);
+            }
+        }
+        input[type=checkbox],
+        input[type=button],
+        input[type=submit] {
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        input[type=button],
+        input[type=submit],
+        input[type=reset] {
+            padding: 11px 21px 11px 23px;
+            font-size: large;
+            text-align: center !important;
+            width: auto !important;
+            min-width: 120px;
+        }
+        input:hover {
+            border: 2px solid #5e5e5e;
+        }
+        input:active {
+            background: #747474 !important;
+            border: 2px solid #434343;
+            transform: scale(0.97);
+        }
+        input:active:not(:hover) {
+            background: #454545 !important;
+            border: 2px solid #454545 !important;
+            transform: scale(1);
+        }
+        input[type=checkbox] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            vertical-align: bottom;
+            border: 2px solid #cccccc;
+            background: var(--bg) !important;
+        }
+        input[type=checkbox] {
+            border: 2px solid #ffffff;
+        }
+        input[type=checkbox]:active {
+            border: 2px solid #999999 !important;
+            background: #999999 !important;
+        }
+        input[type=checkbox]:checked {
+            background-color: var(--accent) !important;
+            background-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxMDYgMjM0IDgxMyA1ODAiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTkxOC41LDI3OC41TDM4NCw4MTMuNUwxMDUuNSw1MzQuNUwxNTAuNSw0ODkuNUwzODQsNzIyLjVMODczLjUsMjMzLjVaIiBmaWxsPSIjRkZGRkZGIiBmaWxsLW9wYWNpdHk9IjEiPg0KICA8L3BhdGg+DQo8L3N2Zz4=") !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: 13px !important;
+            if rounded {
+                background-size: 11px !important;
+            }
+            border: 2px solid #fff !important;
+        }
+        input[type=checkbox]:active:checked {
+            border: 2px solid #999999 !important;
+            background-color: #999999 !important;
+            background-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxMDYgMjM0IDgxMyA1ODAiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTkxOC41LDI3OC41TDM4NCw4MTMuNUwxMDUuNSw1MzQuNUwxNTAuNSw0ODkuNUwzODQsNzIyLjVMODczLjUsMjMzLjVaIiBmaWxsPSIjRkZGRkZGIiBmaWxsLW9wYWNpdHk9IjEiPg0KICA8L3BhdGg+DQo8L3N2Zz4=") !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+        input[type=radio] {
+            appearance: none !important;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+        }
+        input[type=radio]:checked {
+            appearance: none !important;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            padding: 2px !important;
+            background-color: var(--bg) !important;
+            border: 2px solid var(--accent) !important;
+            background-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxNzYgMTc2IDY3MiA2NzIiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTUxMiwxNzZDNTQzLDE3NiA1NzIuNzUsMTgwIDYwMS4yNSwxODhDNjI5Ljc1LDE5NiA2NTYuNSwyMDcuMzMzIDY4MS41LDIyMkM3MDYuNSwyMzYuNjY3IDcyOS4xNjcsMjU0LjE2NyA3NDkuNSwyNzQuNUM3NjkuODMzLDI5NC44MzMgNzg3LjMzMywzMTcuNSA4MDIsMzQyLjVDODE2LjY2NywzNjcuNSA4MjgsMzk0LjI1IDgzNiw0MjIuNzVDODQ0LDQ1MS4yNSA4NDgsNDgxIDg0OCw1MTJDODQ4LDU0MyA4NDQsNTcyLjc1IDgzNiw2MDEuMjVDODI4LDYyOS43NSA4MTYuNjY3LDY1Ni41IDgwMiw2ODEuNUM3ODcuMzMzLDcwNi41IDc2OS44MzMsNzI5LjE2NyA3NDkuNSw3NDkuNUM3MjkuMTY3LDc2OS44MzMgNzA2LjUsNzg3LjMzMyA2ODEuNSw4MDJDNjU2LjUsODE2LjY2NyA2MjkuNzUsODI4IDYwMS4yNSw4MzZDNTcyLjc1LDg0NCA1NDMsODQ4IDUxMiw4NDhDNDgxLDg0OCA0NTEuMjUsODQ0IDQyMi43NSw4MzZDMzk0LjI1LDgyOCAzNjcuNSw4MTYuNjY3IDM0Mi41LDgwMkMzMTcuNSw3ODcuMzMzIDI5NC44MzMsNzY5LjgzMyAyNzQuNSw3NDkuNUMyNTQuMTY3LDcyOS4xNjcgMjM2LjY2Nyw3MDYuNSAyMjIsNjgxLjVDMjA3LjMzMyw2NTYuNSAxOTYsNjI5Ljc1IDE4OCw2MDEuMjVDMTgwLDU3Mi43NSAxNzYsNTQzIDE3Niw1MTJDMTc2LDQ4MSAxODAsNDUxLjI1IDE4OCw0MjIuNzVDMTk2LDM5NC4yNSAyMDcuMzMzLDM2Ny41IDIyMiwzNDIuNUMyMzYuNjY3LDMxNy41IDI1NC4xNjcsMjk0LjgzMyAyNzQuNSwyNzQuNUMyOTQuODMzLDI1NC4xNjcgMzE3LjUsMjM2LjY2NyAzNDIuNSwyMjJDMzY3LjUsMjA3LjMzMyAzOTQuMjUsMTk2IDQyMi43NSwxODhDNDUxLjI1LDE4MCA0ODEsMTc2IDUxMiwxNzZaIiBmaWxsPSIjRkZGRkZGIiBmaWxsLW9wYWNpdHk9IjEiPg0KICA8L3BhdGg+DQo8L3N2Zz4=") !important;
+            background-position: center !important;
+            background-size: 12px !important;
+            background-repeat: no-repeat !important;
+        }
+        select {
+            if rounded {
+                border-radius: var(--border-radius);
+            }
+            appearance: none;
+            font-family: "Segoe UI Variable Display",
+            "Quicksand",
+            "Roboto",
+            "Segoe UI";
+            background-color: var(--bg) !important;
+            border: 2px solid #666666;
+            padding: 3px 15px 3px 3px;
+            background-repeat: no-repeat;
+            color: white;
+            background-position: 95% 50%;
+            background-size: 13px;
+            background-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSI0IDE3NSAxMDE3IDYyOSIgd2lkdGg9IjEwMCUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KICA8cGF0aCBkPSJNODk5LjUsMTc0LjVMMTAyMC41LDI5NUw1MTIsODAzLjVMMy41LDI5NUwxMjQuNSwxNzQuNUw1MTIsNTYyTDg5OS41LDE3NC41WiIgZmlsbD0iI2FhYWFhYSIgZmlsbC1vcGFjaXR5PSIxIj4NCiAgPC9wYXRoPg0KPC9zdmc+") !important;
+        }
+        select:hover {
+            border-color: #999999;
+        }
+        select:active {
+            background-color: #333333 !important;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none !important;
+        }
+        a:hover {
+            color: #999999;
+        }
+        u {
+            text-decoration-color: #666666;
+        }
+        td > form {
+            all: unset;
+        }
+        td > form > input {
+            margin-right: 5px;
+        }
+    }
+    if style==eleven {
+        if theme==dark {
+            :root {
+                --body-bg: #272727;
+                --body-color: #fff;
+                --textarea-border: #303030;
+                --textarea-background: #2d2d2d;
+                --textarea-border-bottom: #9a9a9a;
+                --textarea-hover-background: #323232;
+                --textarea-hover-border: #303030;
+                --textarea-focused-background: #1f1f1f;
+                --textarea-focused-border: #303030;
+                --textarea-focused-border-bottom: accent;
+                --checkbox-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxMjggMjU2IDc2OCA1NDQiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTEyOCw1NDRDMTI4LDUzNS4zMzMgMTMxLjE2Nyw1MjcuODMzIDEzNy41LDUyMS41QzE0My44MzMsNTE1LjE2NyAxNTEuMzMzLDUxMiAxNjAsNTEyQzE2OC42NjcsNTEyIDE3Ni4xNjcsNTE1LjE2NyAxODIuNSw1MjEuNUwzODQsNzIyLjVMODQxLjUsMjY1LjVDODQ3LjgzMywyNTkuMTY3IDg1NS4zMzMsMjU2IDg2NCwyNTZDODcyLjY2NywyNTYgODgwLjE2NywyNTkuMTY3IDg4Ni41LDI2NS41Qzg5Mi44MzMsMjcxLjgzMyA4OTYsMjc5LjMzMyA4OTYsMjg4Qzg5NiwyOTYuNjY3IDg5Mi44MzMsMzA0LjE2NyA4ODYuNSwzMTAuNUw0MDYuNSw3OTAuNUM0MDAuMTY3LDc5Ni44MzMgMzkyLjY2Nyw4MDAgMzg0LDgwMEMzNzUuMzMzLDgwMCAzNjcuODMzLDc5Ni44MzMgMzYxLjUsNzkwLjVMMTM3LjUsNTY2LjVDMTMxLjE2Nyw1NjAuMTY3IDEyOCw1NTIuNjY3IDEyOCw1NDRaIiBmaWxsPSIjMDAwMDAwIiBmaWxsLW9wYWNpdHk9IjEiPg0KICA8L3BhdGg+DQo8L3N2Zz4=");
+                --checkbox-background: #1d1d1d;
+                --checkbox-border: #999999;
+                --checkbox-hover-background: #2a2a2a;
+                --checkbox-hover-border: #9b9b9b;
+                --checkbox-pressed-background: #4a4a4a;
+                --checkbox-pressed-border: #4a4a4a;
+                --checkbox-checked-color: black;
+                --checkbox-checked-background: accent;
+                --checkbox-checked-border: accent;
+                --checkbox-checked-hover-color: black;
+                --checkbox-checked-hover-background: darken(accent, 5);
+                --checkbox-checked-hover-border: darken(accent, 5);
+                --checkbox-checked-pressed-color: rgba(0, 0, 0, 0.5);
+                --checkbox-checked-pressed-background: darken(accent, 10);
+                --checkbox-checked-pressed-border: darken(accent, 10);
+                --radio-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxOTIgMTkyIDY0MCA2NDAiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTE5Miw1MTJDMTkyLDQ2Ny42NjcgMjAwLjMzMyw0MjYuMDgzIDIxNywzODcuMjVDMjMzLjY2NywzNDguNDE3IDI1Ni41LDMxNC41IDI4NS41LDI4NS41QzMxNC41LDI1Ni41IDM0OC40MTcsMjMzLjY2NyAzODcuMjUsMjE3QzQyNi4wODMsMjAwLjMzMyA0NjcuNjY3LDE5MiA1MTIsMTkyQzU1Ni4zMzMsMTkyIDU5Ny45MTcsMjAwLjMzMyA2MzYuNzUsMjE3QzY3NS41ODMsMjMzLjY2NyA3MDkuNSwyNTYuNSA3MzguNSwyODUuNUM3NjcuNSwzMTQuNSA3OTAuMzMzLDM0OC40MTcgODA3LDM4Ny4yNUM4MjMuNjY3LDQyNi4wODMgODMyLDQ2Ny42NjcgODMyLDUxMkM4MzIsNTU2LjMzMyA4MjMuNjY3LDU5Ny45MTcgODA3LDYzNi43NUM3OTAuMzMzLDY3NS41ODMgNzY3LjUsNzA5LjUgNzM4LjUsNzM4LjVDNzA5LjUsNzY3LjUgNjc1LjU4Myw3OTAuMzMzIDYzNi43NSw4MDdDNTk3LjkxNyw4MjMuNjY3IDU1Ni4zMzMsODMyIDUxMiw4MzJDNDY3LjY2Nyw4MzIgNDI2LjA4Myw4MjMuNjY3IDM4Ny4yNSw4MDdDMzQ4LjQxNyw3OTAuMzMzIDMxNC41LDc2Ny41IDI4NS41LDczOC41QzI1Ni41LDcwOS41IDIzMy42NjcsNjc1LjU4MyAyMTcsNjM2Ljc1QzIwMC4zMzMsNTk3LjkxNyAxOTIsNTU2LjMzMyAxOTIsNTEyWiIgZmlsbD0iIzAwMDAwMCIgZmlsbC1vcGFjaXR5PSIxIj4NCiAgPC9wYXRoPg0KPC9zdmc+");
+                --radio-background: transparent;
+                --radio-border: #8d8d8d;
+                --radio-pressed-background: accent;
+                --radio-pressed-border: accent;
+                --radio-hover-background: rgba(255, 255, 255, 0.1);
+                --radio-hover-border: #9a9a9a;
+                --radio-pressed-background: rgba(255, 255, 255, 0.3);
+                --radio-pressed-border: #464646;
+                --radio-checked-background: accent;
+                --radio-checked-border: accent;
+                --radio-checked-hover-background: darken(accent, 5);
+                --radio-checked-hover-border: darken(accent, 5);
+                --radio-checked-pressed-background: darken(accent, 10);
+                --radio-checked-pressed-border: darken(accent, 10);
+            }
+        }
+        else if theme==light {
+            :root {
+                --radio-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxOTIgMTkyIDY0MCA2NDAiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTE5Miw1MTJDMTkyLDQ2Ny42NjcgMjAwLjMzMyw0MjYuMDgzIDIxNywzODcuMjVDMjMzLjY2NywzNDguNDE3IDI1Ni41LDMxNC41IDI4NS41LDI4NS41QzMxNC41LDI1Ni41IDM0OC40MTcsMjMzLjY2NyAzODcuMjUsMjE3QzQyNi4wODMsMjAwLjMzMyA0NjcuNjY3LDE5MiA1MTIsMTkyQzU1Ni4zMzMsMTkyIDU5Ny45MTcsMjAwLjMzMyA2MzYuNzUsMjE3QzY3NS41ODMsMjMzLjY2NyA3MDkuNSwyNTYuNSA3MzguNSwyODUuNUM3NjcuNSwzMTQuNSA3OTAuMzMzLDM0OC40MTcgODA3LDM4Ny4yNUM4MjMuNjY3LDQyNi4wODMgODMyLDQ2Ny42NjcgODMyLDUxMkM4MzIsNTU2LjMzMyA4MjMuNjY3LDU5Ny45MTcgODA3LDYzNi43NUM3OTAuMzMzLDY3NS41ODMgNzY3LjUsNzA5LjUgNzM4LjUsNzM4LjVDNzA5LjUsNzY3LjUgNjc1LjU4Myw3OTAuMzMzIDYzNi43NSw4MDdDNTk3LjkxNyw4MjMuNjY3IDU1Ni4zMzMsODMyIDUxMiw4MzJDNDY3LjY2Nyw4MzIgNDI2LjA4Myw4MjMuNjY3IDM4Ny4yNSw4MDdDMzQ4LjQxNyw3OTAuMzMzIDMxNC41LDc2Ny41IDI4NS41LDczOC41QzI1Ni41LDcwOS41IDIzMy42NjcsNjc1LjU4MyAyMTcsNjM2Ljc1QzIwMC4zMzMsNTk3LjkxNyAxOTIsNTU2LjMzMyAxOTIsNTEyWiIgZmlsbD0iI0ZGRkZGRiIgZmlsbC1vcGFjaXR5PSIxIj4NCiAgPC9wYXRoPg0KPC9zdmc+");
+            }
+        }
+        else {
+            :root {
+                --body-bg: white;
+            }
+        }
+        html,
+        body {
+            background: var(--body-bg);
+            color: var(--body-color);
+            font-family: 'Segoe UI Variable Display';
+        }
+        textarea {
+            border: 1px solid var(--textarea-border);
+            background: var(--textarea-background);
+            border-radius: 5px;
+            outline: none !important;
+            appearance: none !important;
+            border-bottom-color: var(--textarea-border-bottom);
+            padding: 5px 10px;
+            color: var(--body-color);
+            font-family: 'Segoe UI Variable Display';
+            font-size: 14px;
+        }
+        textarea:hover {
+            border: 1px solid var(--textarea-hover-border);
+            background: var(--textarea-hover-background);
+            border-bottom-color: var(--textarea-border-bottom);
+        }
+        textarea:focus {
+            border: 1px solid var(--textarea-focused-border);
+            background: var(--textarea-focused-background);
+            border-bottom-color: var(--textarea-focused-border-bottom);
+        }
+        input,
+        option,
+        select {
+            appearance: none !important;
+        }
+        span.nobr > input[type=checkbox] {
+            position: relative;
+            top: 3px;
+            left: 1px;
+        }
+        input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            background: var(--checkbox-background);
+            vertical-align: bottom;
+            border: 1px solid var(--checkbox-border);
+            border-radius: 5px;
+            position: relative;
+        }
+        input[type=checkbox]:hover {
+            background: var(--checkbox-hover-background);
+            border-color: var(--checkbox-hover-border);
+        }
+        input[type=checkbox]:active {
+            background: var(--checkbox-pressed-background);
+            border-color: var(--checkbox-pressed-border);
+        }
+        input[type=checkbox]:checked {
+            background: var(--checkbox-checked-background);
+            border-color: var(--checkbox-checked-border);
+        }
+        input[type=checkbox]:hover:checked {
+            background: var(--checkbox-checked-hover-background);
+            border-color: var(--checkbox-checked-hover-border);
+        }
+        input[type=checkbox]:active:checked {
+            background: var(--checkbox-checked-pressed-background);
+            border-color: var(--checkbox-checked-pressed-border);
+        }
+        input[type=checkbox]:checked::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            position: absolute;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 60% 80%;
+            background-image: url("data:image/svg+xml;base64,PCEtLSBFeHBvcnRlZCBieSBDaGFyYWN0ZXIgTWFwIFVXUCAtLT4NCjxzdmcgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIxMjggMjU2IDc2OCA1NDQiIHdpZHRoPSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4NCiAgPHBhdGggZD0iTTEyOCw1NDRDMTI4LDUzNS4zMzMgMTMxLjE2Nyw1MjcuODMzIDEzNy41LDUyMS41QzE0My44MzMsNTE1LjE2NyAxNTEuMzMzLDUxMiAxNjAsNTEyQzE2OC42NjcsNTEyIDE3Ni4xNjcsNTE1LjE2NyAxODIuNSw1MjEuNUwzODQsNzIyLjVMODQxLjUsMjY1LjVDODQ3LjgzMywyNTkuMTY3IDg1NS4zMzMsMjU2IDg2NCwyNTZDODcyLjY2NywyNTYgODgwLjE2NywyNTkuMTY3IDg4Ni41LDI2NS41Qzg5Mi44MzMsMjcxLjgzMyA4OTYsMjc5LjMzMyA4OTYsMjg4Qzg5NiwyOTYuNjY3IDg5Mi44MzMsMzA0LjE2NyA4ODYuNSwzMTAuNUw0MDYuNSw3OTAuNUM0MDAuMTY3LDc5Ni44MzMgMzkyLjY2Nyw4MDAgMzg0LDgwMEMzNzUuMzMzLDgwMCAzNjcuODMzLDc5Ni44MzMgMzYxLjUsNzkwLjVMMTM3LjUsNTY2LjVDMTMxLjE2Nyw1NjAuMTY3IDEyOCw1NTIuNjY3IDEyOCw1NDRaIiBmaWxsPSIjMDAwMDAwIiBmaWxsLW9wYWNpdHk9IjEiPg0KICA8L3BhdGg+DQo8L3N2Zz4=");
+        }
+        input[type=radio] {
+            width: 20px;
+            height: 20px;
+            border-radius: 100px;
+            background: var(--radio-background);
+            border: 1px solid var(--radio-border);
+            outline: none;
+            position: relative;
+            top: 3px;
+        }
+        textarea[name='nameservers'] {
+            margin-top: 10px;
+        }
+        input[type=radio]:hover {
+            background: var(--radio-hover-background);
+            border: var(--radio-hover-border);
+        }
+        input[type=radio]:active {
+            background: var(--radio-pressed-background);
+            border: var(--radio-pressed-border);
+        }
+        input[type=radio]:checked {
+            background: var(--radio-checked-background);
+            border: var(--radio-checked-border);
+        }
+        input[type=radio]:checked::before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            content: ' ';
+            background: var(--radio-image);
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        input[type=radio]:hover:checked::before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            content: ' ';
+            background: var(--radio-image);
+            background-size: 14px 14px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        input[type=radio]:active:checked::before {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            content: ' ';
+            background: var(--radio-image);
+            background-size: 10px 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+    * {
+        box-sizing: border-box;
+    }
+}
