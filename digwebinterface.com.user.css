@@ -1,12 +1,15 @@
 /* ==UserStyle==
-@name           digwebinterface.com - 10/24/2021, 5:38:04 PM
+@name           digwebinterface.com | Kat21's Stylus Themes
 @namespace      github.com/openstyles/stylus
 @version        1.0.0
-@description    A new userstyle
+@description    A new style for digwebinterface.com with a Winows 10/11 look to it.
 @author         Kat21
 @preprocessor   stylus
 @license        GPLv3
-@homepageURL    https://github.com/datkat21/uwp_stylus
+@homepageURL    https://github.com/datkat21/stylus-themes
+@supportURL     https://github.com/datkat21/stylus-themes/issues
+@updateURL      https://github.com/datkat21/stylus-themes/raw/master/digwebinterface.com.user.css
+
 @var select theme 'Pick a theme' {
     'Dark (default)': 'dark',
     'Light': 'light',
