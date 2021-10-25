@@ -29,9 +29,15 @@
 @var checkbox newline         'W10: Use newline'       0
 @var color    accent          'Accent'             #3778f6
 @var text     font            'Custom font'        ''Segoe UI Variable''
+@var checkbox hide_support        'Hide donation button' 1
 ==/UserStyle== */
 @-moz-document domain("digwebinterface.com") {
     if style==ten {
+        html, body {
+            border-color: unset !important;
+            background-color: unset !important;
+            color: unset !important;
+        }
         :root {
             --border-radius: 5px;
         }
@@ -63,6 +69,12 @@
             font-family: "Segoe UI Variable Display", "Quicksand", "Roboto", "Segoe UI";
             margin: 0;
             padding: 0;
+        }
+        textarea {
+            font-family: "Segoe UI Variable Display", "Quicksand", "Roboto", "Segoe UI";
+        } 
+        pre {
+            font-family: 'Menlo', 'Cascadia Code', 'Cascadia Mono', Consolata, Consolas, 'Courier New', monospace;
         }
         form {
             animation: top 0.85s cubic-bezier(0.22, 1, 0.36, 1);
@@ -210,7 +222,7 @@
             border: 2px solid #cccccc;
             background: var(--bg) !important;
         }
-        input[type=checkbox] {
+        input[type=checkbox]:hover {
             border: 2px solid #ffffff;
         }
         input[type=checkbox]:active {
@@ -240,6 +252,11 @@
             width: 20px;
             height: 20px;
             border-radius: 20px;
+            background: transparent !important;
+            border: 2px solid #aaaaaa;
+        }
+        input[type=radio]:hover {
+            border: 2px solid #cccccc;
         }
         input[type=radio]:checked {
             appearance: none !important;
@@ -488,5 +505,10 @@
     }
     * {
         box-sizing: border-box;
+    }
+    if hide_support {
+        p > table > tbody > tr > td + td {
+            display: none;
+        }
     }
 }
